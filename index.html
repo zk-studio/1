@@ -49,6 +49,58 @@
             bottom: 0;
             width: 100%;
         }
+        .agent-skill {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .agent-skill:hover {
+            background: #45a049;
+        }
+        .dialog {
+            display: none;
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            width: 300px;
+        }
+        .dialog p {
+            margin: 0;
+            color: #333;
+        }
+        .dialog input {
+            width: calc(100% - 20px);
+            padding: 0.5rem;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .dialog button {
+            margin-top: 10px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .dialog button:hover {
+            background: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -68,5 +120,45 @@
     <footer>
         <p>版权所有 &copy; 2023</p>
     </footer>
+    <button class="agent-skill" id="agentSkillBtn">💬</button>
+    <div class="dialog" id="agentDialog">
+        <p id="agentMessage">你好！我是你的智能助手，有什么可以帮你的吗？</p>
+        <input type="text" id="userInput" placeholder="请输入你的问题..." />
+        <button id="sendMessage">发送</button>
+        <button id="closeDialog">关闭</button>
+    </div>
+    <script>
+        const agentSkillBtn = document.getElementById('agentSkillBtn');
+        const agentDialog = document.getElementById('agentDialog');
+        const closeDialog = document.getElementById('closeDialog');
+        const sendMessage = document.getElementById('sendMessage');
+        const userInput = document.getElementById('userInput');
+        const agentMessage = document.getElementById('agentMessage');
+
+        // 显示对话框
+        agentSkillBtn.addEventListener('click', () => {
+            agentDialog.style.display = 'block';
+        });
+
+        // 关闭对话框
+        closeDialog.addEventListener('click', () => {
+            agentDialog.style.display = 'none';
+        });
+
+        // 模拟 Skill 响应
+        sendMessage.addEventListener('click', () => {
+            const userMessage = userInput.value.trim();
+            if (!userMessage) {
+                alert('请输入内容！');
+                return;
+            }
+
+            // 模拟智能助手的响应
+            agentMessage.textContent = '正在处理你的请求...';
+            setTimeout(() => {
+                agentMessage.textContent = `你刚才说的是：“${userMessage}”。我正在学习如何更好地帮助你！`;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
